@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         tvFilename = findViewById(R.id.tvFileName);
 
         btnStart = findViewById(R.id.btnStart);
-        btnStart = findViewById(R.id.btnStop);
+        btnStop = findViewById(R.id.btnStop);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         gyroscope = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
-        btnStart.setOnClickListener(new View.OnClickListener() {
+        btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 stopRecording();
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     private void startRecording() {
-        if (gyroscope == null | recording) {
+        if (gyroscope == null || recording) {
             return;
         }
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
